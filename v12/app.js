@@ -28,10 +28,16 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+mongoose.connect("mongodb+srv://admin:admin123@cluster0-i7xvv.mongodb.net/test?retryWrites=true&w=majority",
+{ useNewUrlParser: true, useUnifiedTopology: true,useCreateIndex:true }).then(()=>{
+    console.log("MONGO Connection successful");
+}).catch(err=>{console.log("Error"+err)}
+);
+
 // seedDB();  // seed the database
-mongoose.connect("mongodb://localhost/yelp_camp", {
+/* mongoose.connect("mongodb://localhost/yelp_camp", {
     useNewUrlParser: true
-});
+}); */
 app.use(bodyParser.urlencoded({
     extended: true
 }));
